@@ -1,5 +1,6 @@
 
 class NUM:
+    # Inititalizing  NUM instance
     def __inti__(self, s = "", n=0):
         self.txt = s
         self.at = n
@@ -10,6 +11,7 @@ class NUM:
         self.lo = 1E30
         self.heaven = 0 if s.endswith("-") else 1
     
+    # Updating class variables
     def add(self, x):
         if x != "?":
             self.n += 1
@@ -19,6 +21,9 @@ class NUM:
             self.lo = min(x, self.lo)
             self.hi = max(x, self.hi)
 
+
+
+    # Class methods (queries)
     def mid(self):
         return self.mu
     
