@@ -21,21 +21,21 @@ class NUM:
             self.lo = min(x, self.lo)
             self.hi = max(x, self.hi)
 
-
-
     # Class methods (queries)
+            
+    # Method to return mean of NUM
     def mid(self):
         return self.mu
-    
+    # Method to calculate standard deviation of NUM
     def div(self):
         return 0 if self.n < 2 else (self.m2 / (self.n - 1)) ** 0.5
-    
+    # Method to calcuate small value of NUM based on cohen's factor given in the input
     def small(self):
         return the.cohen * self.div()
-
+    # Method to normalize the value
     def norm(self, x):
         return x if x == "?" else (x - self.lo) / (self.hi - self.lo + 1E-30)
-    
+    # Method to find the likelihood based on normal distribution
     def like(self, x, _, nom=None, denom=None):
         mu, sd = self.mid(), self.div() + 1E-30
         nom = 2.718**(-0.5 * (x - mu)**2 / (sd**2))
