@@ -1,7 +1,7 @@
 import math
 
 class SYM:
-    # Create
+    # Create: Creates the initial object of type SYM 
     def __init__(self, s=" ", n=0):    
         self.txt = s
         self.at = n
@@ -10,7 +10,7 @@ class SYM:
         self.mode = None
         self.most = 0
 
-    # Update
+    # Update: Used when update the SYM type cols when data rows are added
     def add(self, x):
         if x != "?":
             self.n = self.n + 1
@@ -18,7 +18,7 @@ class SYM:
             if self.has[x] > self.most:
                 self.most, self.mode = self.has[x], x
 
-    #Query
+    #Query to return the mode of the column
     def mid(self):
         return self.mode
     
