@@ -1,7 +1,7 @@
 
 class NUM:
     # Inititalizing  NUM instance
-    def __inti__(self, s = "", n=0):
+    def __init__(self, s = "", n=0):
         self.txt = s
         self.at = n
         self.n = 0

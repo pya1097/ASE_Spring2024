@@ -9,13 +9,13 @@ class COLS:
         for at,txt in enumerate(row.cells):
             col = NUM(txt, at) if txt[0].isupper() else SYM(txt, at)
             self.all.append(col)
-            if not txt.endsWith("X"):
-                if txt.endsWith("!"):
+            if not txt.endswith("X"):
+                if txt.endswith("!"):
                     self.klass = col
-                (txt.find("[!+-]$") and self.y or self.x)[at] = col 
+                (self.y if txt.endswith(("!", "-", "+")) else self.x).append(col)
     
     def add(self, row):
-        for _,cols in [self.x, self.y]:
+        for cols in [self.x, self.y]:
             for col in cols:
                 col.add(row.cells[col.at])
-            return row
+        return row
