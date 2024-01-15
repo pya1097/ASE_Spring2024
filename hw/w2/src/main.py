@@ -8,6 +8,6 @@ if __name__ == "__main__":
     data = DATA(file_path)
     stats = stats(data)
 
-    with open('/w2/w2/out', 'w', newline='') as csv_file:
+    with open('/w2/w2.out', 'w', newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
         csv_writer.writerow([str(stats)])
