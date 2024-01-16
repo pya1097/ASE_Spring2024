@@ -1,4 +1,7 @@
 # CSC591(021) Automated Software Engineering : Group 9
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Collaborators](https://img.shields.io/badge/Collaborators-3-purple.svg?style=flat)](https://github.com/pya1097/ASE_Spring2024/graphs/contributors)
+
 
 Homework code-repository as submitted by Group 9 for CSC591(021) Spring 2024. 
 
