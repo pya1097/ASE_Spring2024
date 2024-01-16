@@ -7,14 +7,12 @@ from tests import Tests
 if __name__ == "__main__":
     # Configuring input arguments
     inp, s_inp = settings(help_str)
-    print(inp)
-    print(s_inp)
 
     # Running main
     file_path = inp['file'] #'w2/data/auto93.csv'
     data = DATA(file_path)
     stats = data.stats()
-    print(stats)
+    #print(stats)
 
     # Save results to a file
     with open('w2/w2.out', 'w', newline='') as csv_file:

@@ -1,9 +1,13 @@
 import math, re
 import sys, ast
 
-def coerce(x):
-    try : return ast.literal_eval(x)
-    except Exception: return x.strip()
+def coerce(s):
+    def fun(s2):
+        return None if s2.lower() in ["null", "nil", "none"] else s2.lower() == "true" or (s2.lower() != "false" and s2)
+    try:
+        return float(s)
+    except ValueError:
+        return fun(re.match(r'^\s*(.*\S)', s).group(1)) if isinstance(s, str) else s
 
 def cells(s):
     t = []

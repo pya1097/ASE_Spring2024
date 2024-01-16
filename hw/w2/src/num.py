@@ -1,3 +1,4 @@
+from config import *
 
 class NUM:
     # Inititalizing  NUM instance
