@@ -20,16 +20,7 @@ from helper import *
 from tests import Tests
 
 test_suite = Tests()
-# for name in dir(test_suite):
-#   if name.startswith('test_'):
-#     print(getattr(test_suite, name))
 inp_test_map = {name[5:]: getattr(test_suite, name) for name in dir(test_suite) if name.startswith('test_')}
-# print(inp_test_map)
-# e = test_suite.test_coerce
-# print(e)
-# inp_test_map = {
-#     "coerce":test_suite.test_coerce
-#     }
 
 help_str = __doc__
 
