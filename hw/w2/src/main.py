@@ -21,21 +21,14 @@ if __name__ == "__main__":
         csv_writer.writerow([str(stats)])
 
     # Running tests
-    tests = Tests()
+    # tests = Tests()
     if inp['help']:
         print(help_str)
     else:
-        if inp['test'] == 'all':
-            tests.run()
-        elif inp['test'] != None and inp['test'] != '':
-            print("-------------------Test Results--------------------")
-            try:
-                inp_test_map[inp['test']]()
-                print('Test '+inp['test']+' passed')
-            except AssertionError as e:
-                print('Test '+inp['test']+' failed: '+str(e))
-        else:
-            pass
+        if inp['test']:
+            tests = Tests()
+            tests.inp_test(inp,inp_test_map)
+       
 
 
 

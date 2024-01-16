@@ -1,3 +1,4 @@
+from config import *
 from helper import *
 from num import NUM
 from sym import SYM
@@ -111,6 +112,23 @@ class Tests:
             except Exception as e:
                 print("Test "+test_func_name+" failed: "+str(e))
 
+    def inp_test(self,inp,inp_test_map):
+        if inp['test'] == 'all':
+            self.run()
+        elif inp['test'] != None and inp['test'] != '':
+            print("-------------------Test Results--------------------")
+            try:
+                inp_test_map[inp['test']]()
+                print('Test '+inp['test']+' passed')
+            except AssertionError as e:
+                print('Test '+inp['test']+' failed: '+str(e))
+        else:
+            pass
+
 if __name__ == '__main__':
+    # Configuring input arguments
+    inp, s_inp = settings(help_str)
     test_suite = Tests()
-    test_suite.run_tests()
+    test_suite.inp_test(inp, inp_test_map)
+
+    
