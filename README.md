@@ -21,7 +21,7 @@ python3 src/main.py --file data/auto93.csv --test sym_add
 ```bash
 python3 src/test.py --file data/auto93.csv --test all 
 ```
-- To particular test cases
+- To run particular test case
 ```bash
 python3 src/test.py --file data/auto93.csv --test sym_add 
 ```
