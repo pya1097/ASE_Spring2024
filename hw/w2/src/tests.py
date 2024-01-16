@@ -49,7 +49,7 @@ class Tests:
         output = cells(input)
         assert output == ["homework", 44, False, True, 22.94]
     
-    def test_roundoff(self):
+    def test_round(self):
         assert round(42.5421, 2) == 42.54
         assert round(70.853, 2) == 70.85
 

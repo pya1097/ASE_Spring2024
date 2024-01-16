@@ -23,7 +23,7 @@ def csv(src):
         yield i, cells(s)
     src.close()
 
-def roundoff(n, ndecs=None):
+def round(n, ndecs=None):
     if type(n) == str:
         return n
     if math.floor(n) == n:
@@ -39,6 +39,7 @@ def settings(s):
         short_form, full_form, default_value = option
         inp[full_form] = coerce(default_value)
         s_inp[short_form] = full_form
+        
     options_dict = {}
     options = sys.argv[1:]
 

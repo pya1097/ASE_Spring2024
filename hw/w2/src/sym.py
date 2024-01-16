@@ -20,7 +20,7 @@ class SYM:
 
     #Query to return the mode of the column
     def mid(self):
-        return self.mode
+        return int(self.mode)
     
     def div(self, e=0):
         for v in self.has.values():
