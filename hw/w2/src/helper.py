@@ -23,7 +23,7 @@ def csv(src):
         yield i, cells(s)
     src.close()
 
-def round(n, ndecs=None):
+def roundoff(n, ndecs=None):
     if type(n) == str:
         return n
     if math.floor(n) == n:

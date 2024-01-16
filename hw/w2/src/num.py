@@ -1,4 +1,3 @@
-from config import *
 
 class NUM:
     # Inititalizing  NUM instance
@@ -31,7 +30,7 @@ class NUM:
     def div(self):
         return 0 if self.n < 2 else (self.m2 / (self.n - 1)) ** 0.5
     # Method to calcuate small value of NUM based on cohen's factor given in the input
-    def small(self):
+    def small(self, the):
         return the.cohen * self.div()
     # Method to normalize the value
     def norm(self, x):

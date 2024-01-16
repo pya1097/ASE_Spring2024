@@ -12,7 +12,7 @@ if __name__ == "__main__":
     file_path = inp['file'] #'w2/data/auto93.csv'
     data = DATA(file_path)
     stats = data.stats()
-    #print(stats)
+    print(stats)
 
     # Save results to a file
     with open('w2/w2.out', 'w', newline='') as csv_file:
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     else:
         if inp['test'] == 'all':
             tests.run_tests()
-        elif inp['test'] != None or inp['test'] != '':
+        elif inp['test'] != None and inp['test'] != '':
             try:
                 inp_test_map[inp['test']]()
                 print('Test '+inp['test']+' passed.')
