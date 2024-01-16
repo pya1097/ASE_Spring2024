@@ -1,8 +1,42 @@
 from helper import *
 from num import NUM
-from sym import *
-
+from sym import SYM
 class Tests:
+
+    def test_add_sym(self):
+        sym = SYM("origin",5)
+        sym.add("1")
+        assert sym.n == 1
+        assert sym.has == {"1": 1}
+        assert sym.mode == "1"
+        assert sym.most == 1
+
+        # testing by adding a row with same origin value
+        sym.add("1")
+        assert sym.n == 2
+        assert sym.has == {"1": 2}
+        assert sym.mode == "1"
+        assert sym.most == 2
+
+    def test_mid_sym(self):
+        sym = SYM("origin",5)
+        sym.add("1")
+        sym.add("2")
+        assert sym.mid() == "1"
+
+    def test_div_sym(self):
+        sym = SYM("origin",5)
+        sym.add("1")
+        sym.add("1")
+
+        assert sym.div() == 0
+
+    def test_small_sym(self):
+        sym = SYM("origin",5)
+        sym.add("1")
+
+        assert sym.small() == 0
+
     def test_coerce(self):
         assert coerce("true") == True
         assert coerce("93") == 93
