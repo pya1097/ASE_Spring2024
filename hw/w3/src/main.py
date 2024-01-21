@@ -11,14 +11,15 @@ if __name__ == "__main__":
     # Running main
     file_path = inp['file'] #'w2/data/auto93.csv'
     data = DATA(file_path)
-    stats = data.stats()
+    # stats = data.stats()
+    cls_data = data.classes_data()
     print('-----------------Output-----------------')
-    print(stats)
+    print(cls_data)
 
     # Save results to a file
-    with open('w2/w2.out', 'w', newline='') as csv_file:
+    with open('w3.out', 'w', newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
-        csv_writer.writerow([str(stats)])
+        csv_writer.writerow([str(cls_data)])
 
     # Running tests
     # tests = Tests()

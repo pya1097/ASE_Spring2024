@@ -32,3 +32,13 @@ class DATA:
             else:
                 u[col.txt] = round(col.mid())
         return u
+    
+    def classes_data(self):
+        table = {}
+        col = self.cols.klass
+        table["N"] = len(self.rows)
+        table["klasses"] = len(col.has)
+        for key, val in col.has.items():
+            table[key] = val
+            table[key+"%"] = round(val*100/len(self.rows), 2)
+        return table
