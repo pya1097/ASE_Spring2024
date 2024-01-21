@@ -26,3 +26,19 @@ class ROW:
                 out += math.log(inc)
 
         return math.exp(1) ** out
+    
+    # Classifier
+    def likes(self,datas):
+        n, nHypotheses = 0, 0
+        most, out = None, None
+
+        for k, data in datas.items():
+            n += len(data['rows'])
+            nHypotheses += 1
+
+        for k, data in datas.items():
+            tmp = self.like(data, n, nHypotheses)
+            if most is None or tmp > most:
+                most, out = tmp, k
+
+        return out, most

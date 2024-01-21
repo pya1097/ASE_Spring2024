@@ -28,10 +28,3 @@ if __name__ == "__main__":
         if inp['test']:
             tests = Tests()
             tests.inp_test(inp,inp_test_map)
-       
-
-
-
-
-
-    
