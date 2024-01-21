@@ -22,6 +22,7 @@ class SYM:
     def mid(self):
         return self.mode
     
+    #Diversity of the a sym class calculated with entropy
     def div(self, e=0):
         for v in self.has.values():
             e -= v / self.n * math.log(v / self.n, 2)
@@ -30,5 +31,6 @@ class SYM:
     def small(self):
         return 0
 
+    #Calculate teh likelihood of the sym col
     def like(self, x, prior, the):
         return ((self.has[x] or 0) + the.m * prior) / (self.n + the.m)
