@@ -25,5 +25,3 @@ inp_test_map = {name[5:]: getattr(test_suite, name) for name in dir(test_suite) 
 help_str = __doc__
 
 the = {}
-
-

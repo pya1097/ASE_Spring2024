@@ -16,21 +16,23 @@ class DATA:
                 self.add(x, fun)
     
     def add(self, t, fun):
-        row = ROW(t) if type(t) == list else t
+        row = t if type(t) == ROW else ROW(t)
+        # row = ROW(t) if type(t) == list else t
         if self.cols:
             if fun:
                 fun(self, row)
             self.rows.append(self.cols.add(row))
         else:
+           print(row)
            self.cols = COLS(row)
 
     def stats(self, fun = None, ndivs = None):
         u = {".N": len(self.rows)}
         for col in self.cols.all:
             if(isinstance(col, SYM)):
-                u[col.txt] = col.mid()
+                u[col.txt] = int(col.mid())
             else:
-                u[col.txt] = round(col.mid())
+                u[col.txt] = roundoff(col.mid())
         return u
     
     def classes_data(self):
@@ -40,5 +42,5 @@ class DATA:
         table["klasses"] = len(col.has)
         for key, val in col.has.items():
             table[key] = val
-            table[key+"%"] = round(val*100/len(self.rows), 2)
+            table[key+"%"] = roundoff(val*100/len(self.rows), 2)
         return table
