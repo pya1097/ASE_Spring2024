@@ -37,4 +37,6 @@ class SYM:
         tmp = 0
         if x in self.has:
             tmp = self.has[x]
+        if the['m']==0:
+            the['m']=0.000001
         return ((tmp) + the['m'] * prior) / (self.n + the['m'])
