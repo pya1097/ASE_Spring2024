@@ -2,6 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Collaborators](https://img.shields.io/badge/Collaborators-3-purple.svg?style=flat)](https://github.com/pya1097/ASE_Spring2024/graphs/contributors)
 [![Language](https://img.shields.io/badge/Language-Python-orange.svg?style=flat)](https://github.com/search?q=repo%3Apya1097%2FASE_Spring2024++language%3APython&type=code)
+[![Test Suite](https://github.com/pya1097/ASE_Spring2024/actions/workflows/run_test_suite.yml/badge.svg)](https://github.com/pya1097/ASE_Spring2024/actions/workflows/run_test_suite.yml)
 
 
 Homework code-repository as submitted by Group 9 for CSC591(021) Spring 2024. 
