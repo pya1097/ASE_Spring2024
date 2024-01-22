@@ -30,6 +30,6 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test Suite Run 
       run: |
-        cd ASE_Spring2024/hw2/w2/src/
+        cd hw/w3/src/
         coverage run tests.py
         coverage report
