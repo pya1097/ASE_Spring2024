@@ -1,5 +1,7 @@
 import math, re
 import sys, ast
+# from config import the
+
 
 def coerce(s):
     def fun(s2):
@@ -31,28 +33,5 @@ def roundoff(n, ndecs=None):
     mult = 10**(ndecs or 2)
     return math.floor(n * mult + 0.5) / mult
 
-def settings(s):
-    inp = {}
-    s_inp = {}
-    options = re.findall(r'-(\w+)\s+--(\w+)\s+.*=\s*(\S+)', s)
-    for option in options:
-        short_form, full_form, default_value = option
-        inp[full_form] = coerce(default_value)
-        s_inp[short_form] = full_form
-    options_dict = {}
-    options = sys.argv[1:]
 
-    if("--help" in options or "-h" in options):
-        inp["help"]=True
-        return inp,s_inp
 
-    for i in range(0, len(options), 2):
-        options_dict[options[i]] = options[i+1]
-
-    for opt,val in options_dict.items():
-        if opt.startswith('--'):
-            inp[opt[2:]] = coerce(val)
-        elif opt.startswith('-'):
-            inp[s_inp[opt[1:]]] = coerce(val)
-
-    return inp,s_inp

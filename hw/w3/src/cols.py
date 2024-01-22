@@ -15,6 +15,7 @@ class COLS:
                 (self.y if txt.endswith(("!", "-", "+")) else self.x).append(col)
     
     def add(self, row):
+        #print(self.x, self.y)
         for cols in [self.x, self.y]:
             for col in cols:
                 col.add(row.cells[col.at])

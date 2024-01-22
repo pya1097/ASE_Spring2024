@@ -1,4 +1,5 @@
 import math
+# from config import the
 
 class SYM:
     # Create: Creates the initial object of type SYM 
@@ -33,4 +34,7 @@ class SYM:
 
     #Calculate teh likelihood of the sym col
     def like(self, x, prior, the):
-        return ((self.has[x] or 0) + the.m * prior) / (self.n + the.m)
+        tmp = 0
+        if x in self.has:
+            tmp = self.has[x]
+        return ((tmp) + the['m'] * prior) / (self.n + the['m'])

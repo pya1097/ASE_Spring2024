@@ -14,20 +14,23 @@ if __name__ == "__main__":
 
     def learn(data, row, my):
         my['n'] += 1
+        # print(row.cells)
         kl = row.cells[data.cols.klass.at]
         if my['n'] > 10:
             my['tries'] += 1
             my['acc'] += 1 if kl == row.likes(my['datas'])[0] else 0
-        print(data.cols.names)
+        # print(data.cols.names)
+        # data_list = [str(item) for item in data.cols.names]
+        # data_list = [','.join(data_list)]
         my['datas'][kl] = my['datas'].get(kl, DATA(data.cols.names))
-        print("my['datas'][kl]",my['datas'][kl])
-        my['datas'][kl].add(row['cells'])
+        # print(my['datas'][kl])
+        my['datas'][kl].add(row.cells)
     
     # Configuring input arguments
-    inp, s_inp = settings(help_str)
-
+    # inp, s_inp = settings(help_str)
+    # print(inp)
     # Running main
-    file_path = inp['file'] #'w2/data/auto93.csv'
+    file_path = the['file'] #'w2/data/auto93.csv'
     data = DATA(file_path)
     # stats = data.stats()
     cls_data = data.classes_data()
@@ -43,12 +46,12 @@ if __name__ == "__main__":
 
     # Running tests
     # tests = Tests()
-    if inp['help']:
+    if the['help']:
         print(help_str)
     else:
-        if inp['test']:
+        if the['test']:
             tests = Tests()
-            tests.inp_test(inp,inp_test_map)
+            tests.inp_test(the,inp_test_map)
 
        
 

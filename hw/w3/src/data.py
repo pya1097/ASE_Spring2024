@@ -12,10 +12,10 @@ class DATA:
             for _,x in csv(src):
                 self.add(x, fun)
         else:
-            for _,x in enumerate(src):
-                self.add(x, fun)
+            #for _,x in enumerate(src):
+            self.add(src, fun)
     
-    def add(self, t, fun):
+    def add(self, t, fun=None):
         row = t if type(t) == ROW else ROW(t)
         # row = ROW(t) if type(t) == list else t
         if self.cols:
@@ -23,7 +23,7 @@ class DATA:
                 fun(self, row)
             self.rows.append(self.cols.add(row))
         else:
-           print(row)
+        #    print('here', row)
            self.cols = COLS(row)
 
     def stats(self, fun = None, ndivs = None):

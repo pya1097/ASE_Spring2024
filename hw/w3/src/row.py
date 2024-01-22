@@ -1,4 +1,5 @@
 import math
+from config import the
 
 class ROW:
     # Initializing ROW instance
@@ -16,13 +17,14 @@ class ROW:
 
     #Finding out how much a row likes the data
     def like(self, data, n, nHypotheses, the):
-        prior = (len(data.rows) + the.k) / (n + the.k * nHypotheses)
+        # print(the)
+        prior = (len(data.rows) + the['k']) / (n + the['k'] * nHypotheses)
         out = math.log(prior)
 
         for col in data.cols.x:
             v = self.cells[col.at]
             if v != "?":
-                inc = col.like(v, prior)
+                inc = col.like(v, prior, the)
                 out += math.log(inc)
 
         return math.exp(1) ** out
@@ -31,13 +33,14 @@ class ROW:
     def likes(self,datas):
         n, nHypotheses = 0, 0
         most, out = None, None
+        # print(the)
 
         for k, data in datas.items():
-            n += len(data['rows'])
+            n += len(data.rows)
             nHypotheses += 1
 
         for k, data in datas.items():
-            tmp = self.like(data, n, nHypotheses)
+            tmp = self.like(data, n, nHypotheses, the)
             if most is None or tmp > most:
                 most, out = tmp, k
 
