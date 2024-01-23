@@ -1,1 +1,17 @@
-"{'N': 683, 'klasses': 19, 'diaporthe-stem-canker': 20, 'diaporthe-stem-canker%': 2.93, 'charcoal-rot': 20, 'charcoal-rot%': 2.93, 'rhizoctonia-root-rot': 20, 'rhizoctonia-root-rot%': 2.93, 'phytophthora-rot': 88, 'phytophthora-rot%': 12.88, 'brown-stem-rot': 44, 'brown-stem-rot%': 6.44, 'powdery-mildew': 20, 'powdery-mildew%': 2.93, 'downy-mildew': 20, 'downy-mildew%': 2.93, 'brown-spot': 92, 'brown-spot%': 13.47, 'bacterial-blight': 20, 'bacterial-blight%': 2.93, 'bacterial-pustule': 20, 'bacterial-pustule%': 2.93, 'purple-seed-stain': 20, 'purple-seed-stain%': 2.93, 'anthracnose': 44, 'anthracnose%': 6.44, 'phyllosticta-leaf-spot': 20, 'phyllosticta-leaf-spot%': 2.93, 'alternarialeaf-spot': 91, 'alternarialeaf-spot%': 13.32, 'frog-eye-leaf-spot': 91, 'frog-eye-leaf-spot%': 13.32, 'diaporthe-pod-&-stem-blight': 15, 'diaporthe-pod-&-stem-blight%': 2.2, 'cyst-nematode': 14, 'cyst-nematode%': 2.05, '2-4-d-injury': 16, '2-4-d-injury%': 2.34, 'herbicide-injury': 8, 'herbicide-injury%': 1.17}"
+Accuracy for k = 0 and m = 0 is :86.92% 
+Accuracy for k = 0 and m = 1 is :84.55% 
+Accuracy for k = 0 and m = 2 is :80.98% 
+Accuracy for k = 0 and m = 3 is :78.31% 
+Accuracy for k = 1 and m = 0 is :87.07% 
+Accuracy for k = 1 and m = 1 is :84.55% 
+Accuracy for k = 1 and m = 2 is :81.43% 
+Accuracy for k = 1 and m = 3 is :78.45% 
+Accuracy for k = 2 and m = 0 is :86.92% 
+Accuracy for k = 2 and m = 1 is :84.99% 
+Accuracy for k = 2 and m = 2 is :81.58% 
+Accuracy for k = 2 and m = 3 is :78.9% 
+Accuracy for k = 3 and m = 0 is :86.92% 
+Accuracy for k = 3 and m = 1 is :84.99% 
+Accuracy for k = 3 and m = 2 is :81.87% 
+Accuracy for k = 3 and m = 3 is :79.2% 
+Accuracy for the dataset w3/data/soybean.csv is best for k=1 and m=0 with accuracy of 87.07%
