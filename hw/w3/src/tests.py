@@ -100,6 +100,19 @@ class Tests:
             test_sym.add(x)
         mode, e = test_sym.mid(), test_sym.div()
         return 1.57 < e < 1.58 and mode == 1
+    
+    def test_like_function(self):
+        sym_instance = SYM()
+        sym_instance.add("A")
+        sym_instance.add("B")
+        sym_instance.add("A")
+        sym_instance.add("C")
+        x = "A"
+        prior = 0.5
+        the = {'m': 0.000001}
+        result = sym_instance.like(x, prior, the)
+        expected_result = ((2) + 0.000001 * 0.5) / (4 + 0.000001)
+        assert result == expected_result
 
     def run(self):
         print("-------------------Test Results--------------------")
