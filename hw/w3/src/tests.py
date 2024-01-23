@@ -94,14 +94,14 @@ class Tests:
         num_obj.add(10)
         assert num_obj.div() == (12.5)**0.5
 
-    def test_sym_mid_mode(self):
+    def test_sym_mode(self):
         test_sym = SYM()
         for x in [1, 1, 1, 1, 2, 2, 3]:
             test_sym.add(x)
-        mode, e = test_sym.mid(), test_sym.div()
-        return 1.57 < e < 1.58 and mode == 1
+        mode = test_sym.mid()
+        return mode == 1
     
-    def test_like_function(self):
+    def test_sym_like(self):
         sym_instance = SYM()
         sym_instance.add("A")
         sym_instance.add("B")
@@ -113,6 +113,13 @@ class Tests:
         result = sym_instance.like(x, prior, the)
         expected_result = ((2) + 0.000001 * 0.5) / (4 + 0.000001)
         assert result == expected_result
+
+    def test_sym_div(self):
+        test_sym = SYM()
+        for x in [1, 1, 1, 1, 2, 2, 3]:
+            test_sym.add(x)
+        e = test_sym.div()
+        return 1.57 < e < 1.58
 
     def run(self):
         print("-------------------Test Results--------------------")
