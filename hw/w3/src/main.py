@@ -3,6 +3,7 @@ from helper import *
 from config import *
 import csv
 from tests import Tests
+import copy
 
 if __name__ == "__main__":
     
@@ -11,7 +12,7 @@ if __name__ == "__main__":
         llearn = lambda data, t: learn(data, t, wme)
         DATA(file_path, llearn)
         # print("Accuracy :", round((wme['acc']/wme['tries'])*100,2)," %")
-        return str(round((wme['acc']/wme['tries'])*100,2))
+        return round((wme['acc']/wme['tries'])*100,2)
 
     def learn(data, row, my):
         my['n'] += 1
@@ -22,20 +23,34 @@ if __name__ == "__main__":
         my['datas'][kl] = my['datas'].get(kl, DATA(data.cols.names))
         my['datas'][kl].add(row.cells)
     
+    def km():
+        resp = ""
+        best = 0
+        final_k =0
+        final_m =0
+        for k in range(0,4):
+            the['k']=k
+            for m in range(0,4):
+                the['m'] = m
+                s = bayes()
+                resp += "Accuracy for k = "+str(k)+" and m = "+str(m)+" is :"+str(s)+"% \n"
+                if(s>=best):
+                    best = s
+                    final_k = k
+                    final_m = m
+        
+        resp+= "Accuracy for the dataset "+the['file']+" is best for k="+str(final_k)+" and m="+str(final_m)+" with accuracy of "+str(best)+"%"
+        return resp
+    
 
     file_path = the['file'] #'w2/data/auto93.csv'
     data = DATA(file_path)
 
-    if(the['file']=='data/diabetes.csv' or the['file']=='data/weather.csv'):
-        resp = bayes()
-            # Save results to a file
-        with open('w3_task03.out', 'w', newline='') as file:
-            file.write("Accuracy of the bayes classifier for the dataset "+the['file']+" is :"+resp)
-           
-    elif(the['file']=='/data/soybean.csv'):
-        print("hello")
+    resp = km()
 
-
+    with open('w3.out', 'w', newline='') as file:
+        file.write(resp)
+    
 
     if the['help']:
         print(help_str)
