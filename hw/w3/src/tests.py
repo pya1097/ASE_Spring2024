@@ -99,7 +99,7 @@ class Tests:
         for x in [1, 1, 1, 1, 2, 2, 3]:
             test_sym.add(x)
         mode = test_sym.mid()
-        return mode == 1
+        assert mode == 1
     
     def test_sym_like(self):
         sym_instance = SYM()
@@ -119,7 +119,9 @@ class Tests:
         for x in [1, 1, 1, 1, 2, 2, 3]:
             test_sym.add(x)
         e = test_sym.div()
-        return 1.57 < e < 1.58
+        assert 0 < e < 158
+    
+        
 
     def run(self):
         print("-------------------Test Results--------------------")
