@@ -47,8 +47,8 @@ if __name__ == "__main__":
     data = DATA(file_path)
 
     resp = km()
-
-    with open('w3.out', 'w', newline='') as file:
+    print(resp)
+    with open('w3/w3_diabetes.out', 'w', newline='') as file:
         file.write(resp)
     
 

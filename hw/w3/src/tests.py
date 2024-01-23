@@ -120,7 +120,30 @@ class Tests:
             test_sym.add(x)
         e = test_sym.div()
         assert 0 < e < 158
-    
+
+    def test_small_with_zero_div(self):
+        num = NUM()
+        num.n = 1
+        cohen = {'cohen': 0}
+        assert num.small(cohen) == 0
+
+    def test_small_with_nonzero_div(self):
+        num = NUM()
+        num.n = 3
+        num.m2 = 5
+        cohen = {'cohen': 0}
+        assert num.small(cohen) == (5 / 2)**0.5
+
+    def test_small_with_cohen_factor(self):
+        num = NUM()
+        num.n = 3
+        num.m2 = 5
+        # Assuming a hypothetical Cohen factor of 2
+        cohen = 2
+        cohen = {'cohen': 2}
+        expected_result = cohen.cohen * (5 / 2)**0.5
+        assert num.small(cohen) == expected_result
+
         
 
     def run(self):
