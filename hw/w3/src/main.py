@@ -42,14 +42,17 @@ if __name__ == "__main__":
         resp+= "Accuracy for the dataset "+the['file']+" is best for k="+str(final_k)+" and m="+str(final_m)+" with accuracy of "+str(best)+"%"
         return resp
     
-
     file_path = the['file'] #'w2/data/auto93.csv'
     data = DATA(file_path)
 
     resp = km()
     print(resp)
-    with open('w3/w3_diabetes.out', 'w', newline='') as file:
-        file.write(resp)
+    if 'diabetes.csv' in the['file']:
+        with open('w3/w3_diabetes.out', 'w', newline='') as file:
+            file.write(resp)
+    elif 'soybean.csv' in the['file']:
+        with open('w3/w3_soybean.out', 'w', newline='') as file:
+            file.write(resp)
     
 
     if the['help']:

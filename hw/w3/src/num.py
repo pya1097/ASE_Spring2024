@@ -31,7 +31,7 @@ class NUM:
         return 0 if self.n < 2 else (self.m2 / (self.n - 1)) ** 0.5
     # Method to calcuate small value of NUM based on cohen's factor given in the input
     def small(self, the):
-        return the.cohen * self.div()
+        return the['cohen'] * self.div()
     # Method to normalize the value
     def norm(self, x):
         return x if x == "?" else (x - self.lo) / (self.hi - self.lo + 1E-30)
