@@ -10,7 +10,8 @@ if __name__ == "__main__":
         wme = {'acc': 0, 'datas': {}, 'tries': 0, 'n': 0}
         llearn = lambda data, t: learn(data, t, wme)
         DATA(file_path, llearn)
-        print("Accuracy :", round((wme['acc']/wme['tries'])*100,2)," %")
+        # print("Accuracy :", round((wme['acc']/wme['tries'])*100,2)," %")
+        return str(round((wme['acc']/wme['tries'])*100,2))
 
     def learn(data, row, my):
         my['n'] += 1
@@ -25,12 +26,16 @@ if __name__ == "__main__":
     file_path = the['file'] #'w2/data/auto93.csv'
     data = DATA(file_path)
 
-    bayes()
+    if(the['file']=='data/diabetes.csv' or the['file']=='data/weather.csv'):
+        resp = bayes()
+            # Save results to a file
+        with open('w3_task03.out', 'w', newline='') as file:
+            file.write("Accuracy of the bayes classifier for the dataset "+the['file']+" is :"+resp)
+           
+    elif(the['file']=='/data/soybean.csv'):
+        print("hello")
 
-    # Save results to a file
-    # with open('w3.out', 'w', newline='') as csv_file:
-    #     csv_writer = csv.writer(csv_file)
-    #     csv_writer.writerow([str(cls_data)])
+
 
     if the['help']:
         print(help_str)
