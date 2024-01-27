@@ -1,4 +1,4 @@
-# CSC591(021) Automated Software Engineering : Group 9
+# CSC591(021) Automated Software Engineering : Group 7
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Collaborators](https://img.shields.io/badge/Collaborators-3-purple.svg?style=flat)](https://github.com/pya1097/ASE_Spring2024/graphs/contributors)
 [![Language](https://img.shields.io/badge/Language-Python-orange.svg?style=flat)](https://github.com/search?q=repo%3Apya1097%2FASE_Spring2024++language%3APython&type=code)
