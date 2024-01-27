@@ -5,7 +5,7 @@
 [![Test Suite](https://github.com/pya1097/ASE_Spring2024/actions/workflows/run_test_suite.yml/badge.svg)](https://github.com/pya1097/ASE_Spring2024/actions/workflows/run_test_suite.yml)
 
 
-Homework code-repository as submitted by Group 9 for CSC591(021) Spring 2024. 
+Homework code-repository as submitted by Group 7 for CSC591(021) Spring 2024. 
 
 ## How to run
 
