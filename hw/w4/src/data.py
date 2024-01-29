@@ -3,6 +3,8 @@ from helper import *
 from row import ROW
 from cols import COLS
 from sym import SYM
+import random
+from config import the
 
 class DATA:
     def __init__(self, src=[], fun=None):
@@ -44,3 +46,62 @@ class DATA:
             table[key] = val
             table[key+"%"] = roundoff(val*100/len(self.rows), 2)
         return table
+    
+    def gate(self, budget0, budget, some):
+        rows = random.sample(self.rows, len(self.rows))
+        lite = rows[:budget0]
+        dark = rows[budget0:]
+        stats, bests = [], []
+        for i in range(budget):
+            best, rest = self.best_rest(lite, len(lite)**some)
+            todo, selected = self.split(best, rest, lite, dark)
+            print("5: mid: ", selected.mid().cells[len(selected.mid().cells)-3:])
+            print("6: top: ", best.rows[0].cells[len(best.rows[0].cells)-3:])
+            stats.append(selected.mid())
+            bests.append(best.rows[0])
+            lite.append(dark.pop(todo))
+        return stats, bests
+
+    def split(self, best, rest, lite, dark):
+        selected = DATA(self.cols.names)
+        max_value = float('-inf')
+        out = 0
+        for i, row in enumerate(dark):
+            b = row.like(best, len(lite), 2, the)
+            r = row.like(rest, len(lite), 2, the)
+            if b > r:
+                selected.add(row)
+            tmp = abs(b + r) / abs(b - r + 1E-300)
+            # print('tmp',tmp, 'max', max_value)
+            if tmp > max_value:
+                out, max_value = i, tmp
+        return out, selected
+
+    def best_rest(self, rows, want):
+        rows.sort(key=lambda a: a.d2h(self))
+        best = DATA(self.cols.names)
+        rest = DATA(self.cols.names)
+        for i, row in enumerate(rows):
+            if i < want:
+                best.add(row)
+            else:
+                rest.add(row)
+        return best, rest
+    
+    def mid(self, cols=None):
+        u = []
+        for col in cols or self.cols.all:
+            u.append(col.mid())
+        return ROW(u)
+    
+    def div(self, cols=None):
+        u = []
+        for col in cols or self.cols.all:
+            u.append(col.div())
+        return ROW(u)
+
+    def small(self):
+        u = []
+        for col in self.cols.all:
+            u.append(col.small(the))
+        return ROW(u)

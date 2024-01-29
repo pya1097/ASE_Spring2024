@@ -29,7 +29,7 @@ class SYM:
             e -= v / self.n * math.log(v / self.n, 2)
         return e
 
-    def small(self):
+    def small(self, _):
         return 0
 
     #Calculate teh likelihood of the sym col

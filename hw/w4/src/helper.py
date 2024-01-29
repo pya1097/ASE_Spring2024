@@ -30,8 +30,38 @@ def roundoff(n, ndecs=None):
         return n
     if math.floor(n) == n:
         return n
-    mult = 10**(ndecs or 2)
+    if not ndecs: 
+        ndecs = 2
+    mult = 10**(ndecs)
     return math.floor(n * mult + 0.5) / mult
 
+def shuffle(t):
+    u = list(t)
+    for i in range(len(u) - 1, 0, -1):
+        j = math.random(i)
+        u[i], u[j] = u[j], u[i]
+    return u
 
+def slice(t, go=None, stop=None, inc=None):
+    if go is not None and go < 0:
+        go = len(t) + go
+    if stop is not None and stop < 0:
+        stop = len(t) + stop
+    u = []
+    for j in range((go or 1)//1, (stop or len(t))//1, (inc or 1)//1):
+        u.append(t[j])
+    return u
 
+def o(t, n=None, u=None):
+    if isinstance(t, (int, float)):
+        return str(roundoff(t, n))
+    if not isinstance(t, dict) and not isinstance(t, list):
+        return str(t)
+    u = []
+    for k, v in t.items() if isinstance(t, dict) else enumerate(t):
+        if str(k)[0] != '_':
+            if len(t) > 0:
+                u.append(o(v, n))
+            else:
+                u.append(f"{o(k, n)}: {o(v, n)}")
+    return "{" + ", ".join(u) + "}"

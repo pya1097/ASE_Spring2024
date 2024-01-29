@@ -10,9 +10,10 @@ class ROW:
         
     # Method to calculate distancce to heaven
     def d2h(self, data):
-        for _, col in data.cols.y:
+        d, n = 0, 0
+        for col in data.cols.y:
             n = n + 1
-            d = d + abs(col.heaven - col.norm(self.cells([col.at])))**2
+            d = d + abs(col.heaven - col.norm(self.cells[col.at]))**2
         return (d**0.5)/(n**0.5)
 
     #Finding out how much a row likes the data
@@ -25,7 +26,10 @@ class ROW:
             v = self.cells[col.at]
             if v != "?":
                 inc = col.like(v, prior, the)
-                out += math.log(inc)
+                if inc == 0:
+                    out += float('-inf')
+                else:
+                    out += math.log(inc)
 
         return math.exp(1) ** out
     
