@@ -41,16 +41,38 @@ def km():
         return resp
 
 def gate():
-        print("in main.py gateeee!!!!!")
-        budget0, budget, some = 4, 10, 0.5
-        print("THEEEEE")
-        print(the)
-        print("SEED")
-        print(the['seed'])
+        budget0, budget, some = 4, 10, 0.5        
         randomSeeds = random.sample(range(15000),20)
         for randomSeed in randomSeeds:
-            d = DATA(file_path)
-            d.gate(budget0, budget, some)
+            d = DATA(file_path) #loads the data
+            d.gate(randomSeed,budget0, budget, some)
+
+        print('\n'.join(map(str, DATA.list_1)))
+        print('\n')
+        print('\n'.join(map(str, DATA.list_2)))
+        print('\n')
+        print('\n'.join(map(str, DATA.list_3)))
+        print('\n')
+        print('\n'.join(map(str, DATA.list_4)))
+        print('\n')
+        print('\n'.join(map(str, DATA.list_5)))
+        print('\n')
+        print('\n'.join(map(str, DATA.list_6)))
+
+        with open('../../w4/w4.out', 'w') as file:
+            for sublist in DATA.list_1:
+                file.write(sublist + '\n')
+            for sublist in DATA.list_2:
+                file.write(sublist + '\n')
+            for sublist in DATA.list_3:
+                file.write(sublist + '\n')
+            for sublist in DATA.list_4:
+                file.write(sublist + '\n')
+            for sublist in DATA.list_5:
+                file.write(sublist + '\n')
+            for sublist in DATA.list_6:
+                file.write(sublist + '\n')
+             
 
 
 if __name__ == "__main__":
