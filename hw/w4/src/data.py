@@ -7,7 +7,6 @@ import random
 from config import the
 
 class DATA:
-    list_1,list_2,list_3, list_4, list_5, list_6 =[],[],[],[],[],[]
 
     def __init__(self, src=[], fun=None):
         self.rows = []
@@ -53,14 +52,15 @@ class DATA:
     
     
     def gate(self, randomSeed, budget0, budget, some):
+        list_1,list_2,list_3, list_4, list_5, list_6 =[],[],[],[],[],[]
         random.seed(randomSeed)
         rows = random.sample(self.rows, len(self.rows)) #shuffles the data
         
-        DATA.list_1.append(f"1. top6: {[r.cells[len(r.cells)-3:] for r in rows[:6]]}")
-        DATA.list_2.append(f"2. top50:{[[r.cells[len(r.cells)-3:] for r in rows[:50]]]}")
+        list_1.append(f"1. top6: {[r.cells[len(r.cells)-3:] for r in rows[:6]]}")
+        list_2.append(f"2. top50:{[[r.cells[len(r.cells)-3:] for r in rows[:50]]]}")
 
         rows.sort(key=lambda row: row.d2h(self))
-        DATA.list_3.append(f"3. most: {rows[0].cells[len(rows[0].cells)-3:]}")
+        list_3.append(f"3. most: {rows[0].cells[len(rows[0].cells)-3:]}")
 
         rows = random.sample(self.rows, len(self.rows))
 
@@ -71,13 +71,21 @@ class DATA:
         for i in range(budget):
             best, rest = self.best_rest(lite, len(lite)**some)
             todo, selected = self.split(best, rest, lite, dark)
-            DATA.list_4.append(f"4: rand:{sum(list(map(coerce, random.sample(dark, budget0+i)[0].cells[-3:])))/3}")
-            DATA.list_5.append(f"5: mid: {selected.mid().cells[len(selected.mid().cells)-3:]}")
-            DATA.list_6.append(f"6: top: {best.rows[0].cells[len(best.rows[0].cells)-3:]}")
+            list_4.append(f"4: rand:{sum(list(map(coerce, random.sample(dark, budget0+i)[0].cells[-3:])))/3}")
+            list_5.append(f"5: mid: {selected.mid().cells[len(selected.mid().cells)-3:]}")
+            list_6.append(f"6: top: {best.rows[0].cells[len(best.rows[0].cells)-3:]}")
 
             stats.append(selected.mid())
             bests.append(best.rows[0])
             lite.append(dark.pop(todo))
+
+
+        print('\n'.join(map(str, list_1)))
+        print('\n'.join(map(str, list_2)))
+        print('\n'.join(map(str, list_3)))
+        print('\n'.join(map(str, list_4)))
+        print('\n'.join(map(str, list_5)))
+        print('\n'.join(map(str, list_6)))
 
         return stats, bests
 
