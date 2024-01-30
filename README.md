@@ -14,14 +14,6 @@ Homework code-repository as submitted by Group 7 for CSC591(021) Spring 2024.
 ```bash
 python3 src/main.py --file data/auto93.csv 
 ```
-- To run the main code with all test cases
-```bash
-python3 src/main.py --file data/auto93.csv --test all 
-```
-- To run the main code with particular test case
-```bash
-python3 src/main.py --file data/auto93.csv --test sym_add 
-```
 - To only run all test cases
 ```bash
 python3 src/test.py --file data/auto93.csv --test all 
