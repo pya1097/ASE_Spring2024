@@ -1,7 +1,7 @@
 from data import DATA 
 from helper import *
 from config import *
-from tests import Tests
+# from tests import Tests
 import random
 
 
@@ -9,7 +9,6 @@ def bayes():
         wme = {'acc': 0, 'datas': {}, 'tries': 0, 'n': 0}
         llearn = lambda data, t: learn(data, t, wme)
         DATA(file_path, llearn)
-        # print("Accuracy :", round((wme['acc']/wme['tries'])*100,2)," %")
         return round((wme['acc']/wme['tries'])*100,2)
 
 def learn(data, row, my):
@@ -84,7 +83,7 @@ if __name__ == "__main__":
 
     if the['help']:
         print(help_str)
-    else:
-        if the['test']:
-            tests = Tests()
-            tests.inp_test(the,inp_test_map)
+    # else:
+    #     if the['test']:
+    #         tests = Tests()
+    #         tests.inp_test(the,inp_test_map)

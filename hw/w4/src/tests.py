@@ -2,8 +2,9 @@ from config import *
 from helper import *
 from num import NUM
 from sym import SYM
-class Tests:
+from data import DATA
 
+class Tests:
     def test_add_sym(self):
         sym = SYM("origin",5)
         sym.add("1")
@@ -36,7 +37,7 @@ class Tests:
         sym = SYM("origin",5)
         sym.add("1")
 
-        assert sym.small() == 0
+        assert sym.small(0) == 0
 
     def test_coerce(self):
         assert coerce("true") == True
@@ -149,6 +150,9 @@ class Tests:
 
 if __name__ == '__main__':
     # Configuring input arguments
+    test_suite = Tests()
+    inp_test_map = {name[5:]: getattr(test_suite, name) for name in dir(test_suite) if name.startswith('test_')}
+
     inp, s_inp = settings(help_str)
     test_suite = Tests()
     test_suite.inp_test(inp, inp_test_map)
