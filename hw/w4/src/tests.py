@@ -3,6 +3,7 @@ from helper import *
 from num import NUM
 from sym import SYM
 from data import DATA
+from main import bayes
 
 class Tests:
     def test_add_sym(self):
@@ -122,6 +123,22 @@ class Tests:
         e = test_sym.div()
         assert 0 < e < 158
 
+    def test_bayes_diabetes(self):
+        the = {'cohen': 0.35, 'file': 'data/diabetes.csv', 'help': 'False', 'k': 1.0, 'm': 2.0, 'seed': 31210.0, 'run_tc': 'all'}
+        result = bayes(the)
+        assert result > 70
+
+    def test_bayes_weather(self):
+        the = {'cohen': 0.35, 'file': 'data/weather.csv', 'help': 'False', 'k': 1.0, 'm': 2.0, 'seed': 31210.0, 'run_tc': 'all'}
+        result = bayes(the)
+        assert result > 70
+    
+    def test_bayes_soybean(self):
+        the = {'cohen': 0.35, 'file': 'data/soybean.csv', 'help': 'False', 'k': 1.0, 'm': 2.0, 'seed': 31210.0, 'run_tc': 'all'}
+        result = bayes(the)
+        assert result > 70
+
+    
         
 
     def run(self):

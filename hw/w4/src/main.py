@@ -5,10 +5,10 @@ from config import *
 import random
 
 
-def bayes():
+def bayes(the):
         wme = {'acc': 0, 'datas': {}, 'tries': 0, 'n': 0}
         llearn = lambda data, t: learn(data, t, wme)
-        DATA(file_path, llearn)
+        DATA(the['file'], llearn)
         return round((wme['acc']/wme['tries'])*100,2)
 
 def learn(data, row, my):
@@ -29,7 +29,7 @@ def km():
             the['k']=k
             for m in range(0,4):
                 the['m'] = m
-                s = bayes()
+                s = bayes(the)
                 resp += "Accuracy for k = "+str(k)+" and m = "+str(m)+" is :"+str(s)+"% \n"
                 if(s>=best):
                     best = s
