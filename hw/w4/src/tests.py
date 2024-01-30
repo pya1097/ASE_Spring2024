@@ -6,6 +6,27 @@ from data import DATA
 from main import bayes
 
 class Tests:
+    def test_num_small_zero_div(self):
+        num = NUM()
+        num.n = 1
+        the = {'cohen': 0.35, 'file': 'w3/data/diabetes.csv', 'help': False, 'k': 1.0, 'm': 2.0, 'seed': 31210.0, 'test': 'all'}
+        assert num.small(the) == 0
+
+    def test_num_small_nonzero_div(self):
+        num = NUM()
+        num.n = 3
+        num.m2 = 5
+        the = {'cohen': 1, 'file': 'w3/data/diabetes.csv', 'help': False, 'k': 1.0, 'm': 2.0, 'seed': 31210.0, 'test': 'all'}
+        assert num.small(the) == (5 / 2)**0.5
+
+    def test_num_small_cohen_factor(self):
+        num = NUM()
+        num.n = 3
+        num.m2 = 5
+        the = {'cohen': 2, 'file': 'w3/data/diabetes.csv', 'help': False, 'k': 1.0, 'm': 2.0, 'seed': 31210.0, 'test': 'all'}
+        expected_result = the['cohen'] * (5 / 2)**0.5
+        assert num.small(the) == expected_result
+        
     def test_add_sym(self):
         sym = SYM("origin",5)
         sym.add("1")
@@ -138,9 +159,37 @@ class Tests:
         result = bayes(the)
         assert result > 70
 
-    
-        
+    def test_shuffle_empty(self):
+        test_list = []
+        shuffled_list = shuffle(test_list)
+        assert test_list == shuffled_list 
 
+    def test_shuffle_num(self):
+        test_list = [1, 2, 3, 4, 5]
+        shuffled_list = shuffle(test_list)
+        assert test_list != shuffled_list 
+
+    def test_shuffle_sym(self):
+        test_list = ['a', 'b', 'c', 'd', 'e']
+        shuffled_list = shuffle(test_list)
+        assert test_list != shuffled_list 
+
+    def test_slice(self):
+        sliced_list = slice([1, 2, 3, 4, 5])
+        assert [2,3,4,5] ==  sliced_list
+
+    def test_slice_start_stop(self):
+        sliced_list = slice([1, 2, 3, 4, 5], 1, 4)
+        assert sliced_list == [2, 3, 4] 
+
+    def test_slice_neg_start_stop(self):
+        sliced_list = slice([1, 2, 3, 4, 5], -3, -1)
+        assert sliced_list == [3, 4]  
+    
+    def test_slice_start_stop_incr(self):
+        sliced_list = slice( [1, 2, 3, 4, 5], 0, 5, 2)
+        assert sliced_list == [2,4] 
+    
     def run(self):
         print("-------------------Test Results--------------------")
         test_functions = [func for func in dir(self) if func.startswith('test_') and callable(getattr(self, func))]

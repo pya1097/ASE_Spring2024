@@ -1,5 +1,7 @@
 import math, re
 import sys, ast
+import random
+
 # from config import the
 
 
@@ -38,7 +40,7 @@ def roundoff(n, ndecs=None):
 def shuffle(t):
     u = list(t)
     for i in range(len(u) - 1, 0, -1):
-        j = math.random(i)
+        j = random.randint(0,i)
         u[i], u[j] = u[j], u[i]
     return u
 
