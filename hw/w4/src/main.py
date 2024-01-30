@@ -1,7 +1,6 @@
 from data import DATA 
 from helper import *
 from config import *
-# from tests import Tests
 import random
 
 
@@ -49,20 +48,6 @@ def gate():
             d = DATA(file_path) #loads the data
             d.gate(randomSeed,budget0, budget, some)
             print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-
-        # with open('../../w4/w4.out', 'w') as file:
-        #     for sublist in DATA.list_1:
-        #         file.write(sublist + '\n')
-        #     for sublist in DATA.list_2:
-        #         file.write(sublist + '\n')
-        #     for sublist in DATA.list_3:
-        #         file.write(sublist + '\n')
-        #     for sublist in DATA.list_4:
-        #         file.write(sublist + '\n')
-        #     for sublist in DATA.list_5:
-        #         file.write(sublist + '\n')
-        #     for sublist in DATA.list_6:
-        #         file.write(sublist + '\n')
              
 
 
@@ -73,7 +58,3 @@ if __name__ == "__main__":
 
     if the['help']:
         print(help_str)
-    # else:
-    #     if the['test']:
-    #         tests = Tests()
-    #         tests.inp_test(the,inp_test_map)

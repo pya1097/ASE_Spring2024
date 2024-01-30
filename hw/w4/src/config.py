@@ -17,7 +17,6 @@ OPTIONS:
   """
 
 from helper import *
-# from tests import Tests
 
 def settings(s):
     inp = {}
@@ -45,8 +44,6 @@ def settings(s):
 
     return inp,s_inp
 
-# test_suite = Tests()
-# inp_test_map = {name[5:]: getattr(test_suite, name) for name in dir(test_suite) if name.startswith('test_')}
 
 help_str = __doc__
 
