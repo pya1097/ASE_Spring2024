@@ -71,7 +71,7 @@ class DATA:
         for i in range(budget):
             best, rest = self.best_rest(lite, len(lite)**some)
             todo, selected = self.split(best, rest, lite, dark)
-            list_4.append(f"4: rand:{sum(list(map(coerce, random.sample(dark, budget0+i)[0].cells[-3:])))/3}")
+            list_4.append(f"4: rand:{random.sample(dark, budget0+i)[0].cells[-3:]}")
             list_5.append(f"5: mid: {selected.mid().cells[len(selected.mid().cells)-3:]}")
             list_6.append(f"6: top: {best.rows[0].cells[len(best.rows[0].cells)-3:]}")
 
