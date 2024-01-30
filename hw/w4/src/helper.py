@@ -2,9 +2,6 @@ import math, re
 import sys, ast
 import random
 
-# from config import the
-
-
 def coerce(s):
     def fun(s2):
         return None if s2.lower() in ["null", "nil", "none"] else s2.lower() == "true" or (s2.lower() != "false" and s2)
