@@ -11,12 +11,12 @@ class ROW:
     def d2h(self, data):
         d, n, p = 0, 0, the['p']
         for col in data.cols.y.values():
-            x = self.cells[col.at-1]
+            x = self.cells[col.at]
             if x is None:
                 print("?")
             else:
                 n += 1
-                d += abs(col.heaven - col.norm(self.cells[col.at-1])) ** p
+                d += abs(col.heaven - col.norm(self.cells[col.at])) ** p
         return (d / n) ** (1 / p)
     
     # Minkowski dsitance (the.p=1 is taxicab/Manhattan; the.p=2 is Euclidean)
@@ -24,7 +24,7 @@ class ROW:
         d, n, p = 0, 0, the['p']
         for col in data.cols.x.values():
             n += 1
-            d += col.dist(self.cells[col.at-1], other.cells[col.at-1]) ** p
+            d += col.dist(self.cells[col.at], other.cells[col.at]) ** p
         return (d / n) ** (1 / p)
 
     def neighbors(self, data, rows=None):

@@ -77,7 +77,7 @@ def many(t, n=None):
     return u
 
 def keysort(t, fun):
-    u = [{"x": x, "y": fun(x)} for x in t]
-    u.sort(key=lambda a: a["y"])
-    v = [[xy["x"], xy["y"]] for xy in u]
+    u = [{'x': x, 'y': fun(x)} for x in t]
+    u.sort(key=lambda a: a['y'])
+    v = [xy['x'] for xy in u]
     return v
