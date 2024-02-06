@@ -40,3 +40,13 @@ class SYM:
         if the['m']==0:
             the['m']=0.000001
         return ((tmp) + the['m'] * prior) / (self.n + the['m'])
+    
+
+    def dist(self, x, y):
+        if(x==y):
+            return 0
+    
+        return 1
+
+    def bin(self, x):
+        return x
