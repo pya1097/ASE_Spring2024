@@ -2,8 +2,6 @@ import math, re
 import sys, ast
 import random
 
-# from config import the
-
 
 def coerce(s):
     def fun(s2):
@@ -67,3 +65,19 @@ def o(t, n=None, u=None):
             else:
                 u.append(f"{o(k, n)}: {o(v, n)}")
     return "{" + ", ".join(u) + "}"
+
+def anyCustom(t):
+    return random.choice(t)
+
+def many(t, n=None):
+    n = n or len(t)
+    u = []
+    for _ in range(n):
+        u.append(any(t))
+    return u
+
+def keysort(t, fun):
+    u = [{"x": x, "y": fun(x)} for x in t]
+    u.sort(key=lambda a: a["y"])
+    v = [[xy["x"], xy["y"]] for xy in u]
+    return v

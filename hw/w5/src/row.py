@@ -1,20 +1,35 @@
 import math
 from config import the
+from helper import *
 
 class ROW:
     # Initializing ROW instance
     def __init__(self, t):
         self.cells = t
 
-    # ROW class methods
-        
-    # Method to calculate distancce to heaven
+    # Distance to best values (and _lower_ is _better_).
     def d2h(self, data):
-        d, n = 0, 0
-        for col in data.cols.y:
-            n = n + 1
-            d = d + abs(col.heaven - col.norm(self.cells[col.at]))**2
-        return (d**0.5)/(n**0.5)
+        d, n, p = 0, 0, the['p']
+        for col in data.cols.y.values():
+            x = self.cells[col.at-1]
+            if x is None:
+                print("?")
+            else:
+                n += 1
+                d += abs(col.heaven - col.norm(self.cells[col.at-1])) ** p
+        return (d / n) ** (1 / p)
+    
+    # Minkowski dsitance (the.p=1 is taxicab/Manhattan; the.p=2 is Euclidean)
+    def dist(self, other, data):
+        d, n, p = 0, 0, the['p']
+        for col in data.cols.x.values():
+            n += 1
+            d += col.dist(self.cells[col.at-1], other.cells[col.at-1]) ** p
+        return (d / n) ** (1 / p)
+
+    def neighbors(self, data, rows=None):
+        return keysort(rows or data.rows, fun=lambda row: self.dist(row, data))
+
 
     #Finding out how much a row likes the data
     def like(self, data, n, nHypotheses, the):
