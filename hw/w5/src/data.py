@@ -15,18 +15,15 @@ class DATA:
             for _,x in csv(src):
                 self.add(x, fun)
         else:
-            #for _,x in enumerate(src):
             self.add(src, fun)
     
     def add(self, t, fun=None):
         row = t if type(t) == ROW else ROW(t)
-        # row = ROW(t) if type(t) == list else t
         if self.cols:
             if fun:
                 fun(self, row)
             self.rows.append(self.cols.add(row))
         else:
-        #    print('here', row)
            self.cols = COLS(row)
 
     def stats(self, fun = None, ndivs = None):
@@ -49,8 +46,6 @@ class DATA:
         return table
     
 
-    
-    
     def gate(self, randomSeed, budget0, budget, some):
         list_1,list_2,list_3, list_4, list_5, list_6 =[],[],[],[],[],[]
         random.seed(randomSeed)
@@ -132,3 +127,38 @@ class DATA:
         for col in self.cols.all:
             u.append(col.small(the))
         return ROW(u)
+    
+    def clone(self, rows=None):
+        new = DATA()
+        for row in rows or []:
+            new.add(row)
+        return new
+    
+    def farapart(self, rows, sortp, a=None):
+        far = int(len(rows) * the.Far)
+        evals = 1 if a else 2
+        a = a or anyCustom(rows).neighbors(self, rows)[far]
+        b = a.neighbors(self, rows)[far]
+        if sortp and b.d2h(self) < a.d2h(self):
+            a, b = b, a
+        return a, b, a.dist(b, self), evals
+    
+    def half(self, rows, sortp, before=None):
+        some = many(rows, min(the.Half, len(rows)))
+        a, b, C, evals = self.farapart(some, sortp, before)
+        aS, bS = [], []
+        def d(row1, row2):
+            return row1.dist(row2, self)
+
+        def project(r):
+            return (d(r, a) ** 2 + C ** 2 - d(r, b) ** 2) / (2 * C)
+
+        sorted_rows = keysort(rows, project)
+
+        for n, row in enumerate(sorted_rows, start=1):
+            if n <= len(rows) // 2:
+                aS.append(row)
+            else:
+                bS.append(row)
+
+        return aS, bS, a, b, C, d(a, bS[0]), evals
