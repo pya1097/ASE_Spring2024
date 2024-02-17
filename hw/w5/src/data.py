@@ -184,7 +184,7 @@ class DATA:
         if current_distance <= target_distance:
             print(f"far1: {a.cells}")
             print(f"far2: {b.cells}")
-            print(f"distance: {roundoff(current_distance)}")
+            print(f"distance: {current_distance}")
         else:
             print("No pair found within the target distance after maximum attempts.")
 
