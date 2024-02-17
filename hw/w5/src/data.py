@@ -133,14 +133,21 @@ class DATA:
         for row in rows or []:
             new.add(row)
         return new
+
+
+    def farapart(self, rows, sortp, a=None, b=None, far=None, evals=0):
+        far = int(len(rows) * 0.95) + 1
+        evals = 1 if a is not None else 2
+        
+        a = a or random.choice(rows)
     
-    def farapart(self, rows, sortp, a=None):
-        far = int(len(rows) * the.Far)
-        evals = 1 if a else 2
-        a = a or anyCustom(rows).neighbors(self, rows)[far]
-        b = a.neighbors(self, rows)[far]
+        sorted_neighbors = a.neighbors(self, rows)
+        a = a or sorted_neighbors[0]
+        b = sorted_neighbors[min(far, len(sorted_neighbors) - 1)]
+        
         if sortp and b.d2h(self) < a.d2h(self):
             a, b = b, a
+        
         return a, b, a.dist(b, self), evals
     
     def half(self, rows, sortp, before=None):
@@ -162,3 +169,24 @@ class DATA:
                 bS.append(row)
 
         return aS, bS, a, b, C, d(a, bS[0]), evals
+    
+    def far(the, data_new):
+        print()
+        print("Task 2:\n")
+        target_distance = 0.95
+        current_distance = 0
+        attempts = 0
+
+        while current_distance < target_distance and attempts < 200:
+            a, b, C, _ = data_new.farapart(data_new.rows, sortp=True)
+            current_distance = C
+            attempts += 1
+        if current_distance <= target_distance:
+            print(f"far1: {a.cells}")
+            print(f"far2: {b.cells}")
+            print(f"distance: {roundoff(current_distance)}")
+        else:
+            print("No pair found within the target distance after maximum attempts.")
+
+        #print(f"Total Attempts: {attempts}")
+        return current_distance, attempts
