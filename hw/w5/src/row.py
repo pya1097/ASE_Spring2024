@@ -9,20 +9,16 @@ class ROW:
 
     # Distance to best values (and _lower_ is _better_).
     def d2h(self, data):
-        d, n, p = 0, 0, the['p']
-        for col in data.cols.y.values():
-            x = self.cells[col.at]
-            if x is None:
-                print("?")
-            else:
-                n += 1
-                d += abs(col.heaven - col.norm(self.cells[col.at])) ** p
-        return (d / n) ** (1 / p)
+        d, n, p = 0, 0, 2
+        for col in data.cols.y:
+            n += 1
+            d += abs(col.heaven - col.norm(self.cells[col.at])) ** p
+        return math.sqrt(d) / math.sqrt(n)
     
     # Minkowski dsitance (the.p=1 is taxicab/Manhattan; the.p=2 is Euclidean)
     def dist(self, other, data):
-        d, n, p = 0, 0, the['p']
-        for col in data.cols.x.values():
+        d, n, p = 0, 0, 2
+        for col in data.cols.x:
             n += 1
             d += col.dist(self.cells[col.at], other.cells[col.at]) ** p
         return (d / n) ** (1 / p)
