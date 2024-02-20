@@ -5,26 +5,29 @@ from cols import COLS
 from sym import SYM
 import random
 from config import the
+from Node import NODE
 
 class DATA:
 
     def __init__(self, src=[], fun=None):
         self.rows = []
         self.cols = None
-        if isinstance(src,str):
-            for _,x in csv(src):
+        if isinstance(src, str):
+            for _, x in csv(src):
                 self.add(x, fun)
         else:
-            self.add(src, fun)
-    
+            for row in src:
+                self.add(row, fun)
+
     def add(self, t, fun=None):
-        row = t if type(t) == ROW else ROW(t)
+        row = t if isinstance(t, ROW) else ROW(t)
         if self.cols:
             if fun:
                 fun(self, row)
-            self.rows.append(self.cols.add(row))
+            self.cols.add(row)
+            self.rows.append(row)
         else:
-           self.cols = COLS(row)
+            self.cols = COLS(row)
 
     def stats(self, fun = None, ndivs = None):
         u = {".N": len(self.rows)}
@@ -128,11 +131,11 @@ class DATA:
             u.append(col.small(the))
         return ROW(u)
     
-    def clone(self, rows=None):
-        new = DATA()
+    def clone(self, rows=None, newData=None):
+        newData = DATA([self.cols.names])
         for row in rows or []:
-            new.add(row)
-        return new
+            newData.add(row)
+        return newData
 
 
     def farapart(self, rows, sortp, a=None, b=None, far=None, evals=0):
@@ -150,25 +153,20 @@ class DATA:
         
         return a, b, a.dist(b, self), evals
     
-    def half(self, rows, sortp, before=None):
-        some = many(rows, min(the.Half, len(rows)))
+    def half(self, rows, sortp, before):
+        the_half = min(len(rows) // 2, len(rows))
+        some = random.sample(rows, the_half)
         a, b, C, evals = self.farapart(some, sortp, before)
-        aS, bS = [], []
         def d(row1, row2):
             return row1.dist(row2, self)
-
+        
         def project(r):
-            return (d(r, a) ** 2 + C ** 2 - d(r, b) ** 2) / (2 * C)
-
-        sorted_rows = keysort(rows, project)
-
-        for n, row in enumerate(sorted_rows, start=1):
-            if n <= len(rows) // 2:
-                aS.append(row)
-            else:
-                bS.append(row)
-
-        return aS, bS, a, b, C, d(a, bS[0]), evals
+            return (d(r, a)**2 + C**2 - d(r, b)**2) / (2 * C)
+        rows_sorted = sorted(rows, key=project)
+        mid_point = len(rows) // 2
+        as_ = rows_sorted[:mid_point]
+        bs = rows_sorted[mid_point:]
+        return as_, bs, a, b, C, d(a, bs[0]), evals
     
     def far(the, data_new):
         print()
@@ -190,3 +188,39 @@ class DATA:
 
         #print(f"Total Attempts: {attempts}")
         return current_distance, attempts
+    
+    def tree(self, sortp):
+        evals = 0
+
+        def _tree(data, above = None):
+            nonlocal evals
+            node = NODE(data)
+
+            if len(data.rows) > 2 * (len(self.rows) ** 0.5):
+                lefts, rights, node.left, node.right, node.C, node.cut, evals1 = self.half(data.rows, sortp, above)
+                evals += evals1
+                node.lefts = _tree(self.clone(lefts), node.left)
+                node.rights = _tree(self.clone(rights), node.right)
+
+            return node
+
+        return _tree(self), evals
+    
+    def branch(self, stop=None, rest=None, _branch=None, evals=None):
+        evals, rest = 1, []
+        stop = stop or (2 * (len(self.rows) ** 0.5))
+
+        def _branch(data, above=None, left=None, lefts=None, rights=None):
+            nonlocal evals, rest
+
+            if len(data.rows) > stop:
+                lefts, rights, left, _, _, _, _  = self.half(data.rows, True, above)
+                evals += 1
+                for row1 in rights:
+                    rest.append(row1)
+
+                return _branch(self.clone(lefts), left)
+            else:
+                return self.clone(data.rows), self.clone(rest), evals
+
+        return _branch(self)
