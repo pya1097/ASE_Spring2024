@@ -19,8 +19,8 @@ if __name__ == "__main__":
     data_new = DATA(the['file'])
     mid_100, div_100 = data_new.mid_div()
 
-    # random_seeds = random.sample(range(100),20)
-    random_seeds = [21, 39]
+    random_seeds = random.sample(range(100),20)
+    # random_seeds = [21, 39]
     smo_output = []
     any50_output = []
     budget0, budget, some = 4, 5, 0.5  
