@@ -31,6 +31,15 @@ if __name__ == "__main__":
         any50_output.append(d.any50(random_seed))
    
     best_100 = d.best_100(random_seed)
+
+    print_centroid(d,mid_100, div_100, the)
+    print("#")
+    print_smo(smo_output)
+    print("#")
+    print_any50(any50_output)
+    print("#")
+    print(format_row("100%",best_100[0],best_100[1]))
+
     
     
 
