@@ -9,7 +9,8 @@ Homework code-repository as submitted by Group 7 for CSC591(021) Spring 2024.
 
 ## How to run
 
-- Navigate to the respective hw(?)/w(?) folder. '?' signifies the homework number and week number. 
+- Navigate to the respective hw/w(?) folder. '?' signifies the homework number and week number.
+- Output file for the weeks homework will be in hw/w(?)/src/w(?).out
 - To run the main code with file as input
 ```bash
 python3 src/main.py --file data/auto93.csv 
