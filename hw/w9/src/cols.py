@@ -10,6 +10,9 @@ class COLS:
             # print(f"Column Name: {txt}, Is Numeric: {txt[0].isalpha() and txt[0].isupper()}")
             col = (NUM if txt[0].isalpha() and txt[0].isupper() else SYM)(txt, at)
             self.all.append(col)
+            print("printing txt type in col class-----------------------------")
+            print(txt)
+            print(type(txt))
             if not txt.endswith("X"):
                 if txt.endswith("!"):
                     self.klass = col
