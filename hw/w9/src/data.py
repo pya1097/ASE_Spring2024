@@ -159,7 +159,7 @@ class DATA:
         return ROW(u)
     
     def clone(self, rows=None, newData=None):
-        newData = DATA([self.cols.names])
+        newData = DATA(self.cols.names)
         for row in rows or []:
             newData.add(row)
         return newData
@@ -233,7 +233,7 @@ class DATA:
 
         return _tree(self), evals
     
-    def branch(self, stop=None, rest=None, _branch=None, evals=None):
+    def branch(self, stop=None):
         evals, rest = 1, []
         stop = stop or (2 * (len(self.rows) ** 0.5))
 
