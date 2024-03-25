@@ -120,3 +120,36 @@ def print_any50(any50_output):
     any50_output = sorted(any50_output, key=lambda x: x[1])
     for op in any50_output:
         print(format_row("any50",op[0],op[1]))
+
+def powerset(s):
+    # print(s)
+    t = [[]]
+    for i in range(len(s)):
+        for j in range(len(t)):
+            t.append([s[i]] + t[j])
+    # print(t)
+    return t
+
+def score(t, goal, LIKE, HATE, the):
+    like, hate, tiny = 0, 0, 1E-30
+    # print(t.items())
+    for klass, n in t.items():
+        if klass == goal:
+            like += n
+        else:
+            hate += n
+    like = like / (LIKE + tiny)
+    hate = hate / (HATE + tiny)
+    if hate > like:
+        return 0
+    else:
+        return (like ** the['Support']) / (like + hate)
+    
+
+def copy(t):
+    if type(t) != dict and type(t) != list:
+        return t
+
+    u = {}
+    for k, v in t.items() if isinstance(t, dict) else enumerate(t):
+        u[copy(k)] = copy(v)
